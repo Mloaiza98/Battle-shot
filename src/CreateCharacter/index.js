@@ -1,61 +1,70 @@
 import React from "react";
-import { TodoContext} from "../TodoContext";
+import { TodoContext } from "../TodoContext";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import "./CreateCharacter.css";
 
-function CreateCharacter() {
-  const { addNewCharacter } = React.useContext(TodoContext);
-  const [pic, setPic] = React.useState(0);
+export default function CreateCharacter() {
+  const { addNewCharacter, setOpenCharacter, pic, setPic } =
+    React.useContext(TodoContext);
   const [name, setName] = React.useState("");
   const onChangeName = (event) => {
     setName(event.target.value);
   };
-  const onChangePic = (event) => {
-    setPic(event.target.value);
+  const onImgClick = () => {
+    setOpenCharacter(true);
   };
-  const onSubmitForm = (event) => {
-    event.preventDefault();
+
+  const onCancel = () => {
+    setName("");
+  };
+  const onAdd = () => {
     addNewCharacter(name, pic);
     setName("");
     setPic(0);
   };
-  const onCancel=()=>{
-    setName("");
-    setPic(0);
-  }
   return (
-    <form onSubmit={onSubmitForm}>
-      <label>Escoge a tu personaje</label>
-      <textarea
-        placeholder="¿Nombre?"
-        id="Todo"
-        value={name}
-        onChange={onChangeName}
-      />
-      <select
-        name="categories"
-        id="categories"
-        defaultValue={pic}
-        onChange={onChangePic}
-      >
-        <option hidden selected defaultValue={0}>
-          Escoge un personajes
-        </option>
-        <option value={1}> </option>
-        <option value={2}>Video Juego</option>
-        <option value={3}>Libro</option>
-      </select>
-      <div className="TodoForm-buttonContainer">
-        <button className="TodoForm-button TodoForm-button--add">
+    <Card sx={{ maxWidth: 345, background: "#DC852A" }}>
+      <CardContent className={"Content"}>
+        <CardMedia
+          sx={{
+            height: 140,
+            width: 140,
+            borderRadius: 50,
+            display: "inline-flex",
+          }}
+          image={`/assets/Imagen/${pic}.png`}
+          title="green iguana"
+          onClick={onImgClick}
+        />
+      </CardContent>
+
+      <CardContent className={"Content"}>
+        <TextField
+          sx={{
+            color: "#FFC47E",
+          }}
+          id="Name"
+          variant="outlined"
+          placeholder="Escribe un nombre"
+          value={name}
+          autoComplete="false"
+          onChange={onChangeName}
+        />
+      </CardContent>
+      <CardActions className={"Content"}>
+        <Button variant="contained" onClick={onAdd}>
           Agregar
-        </button>
-        <button
-          type="button"
-          className="TodoForm-button TodoForm-button--cancel"
-          onClick={onCancel}
-        >
+        </Button>
+        <Button variant="contained" onClick={onCancel}>
           Cancelar
-        </button>
-      </div>
-    </form>
+        </Button>
+      </CardActions>
+    </Card>
   );
 }
 

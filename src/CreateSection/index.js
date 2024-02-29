@@ -9,6 +9,7 @@ import React from "react";
 
 const CreateSection = () => {
   const { character } = React.useContext(TodoContext);
+  console.log(character);
 
   // const [character, setCharacter] = React.useState([]);
   // setCharacter(defaultCharacter);
@@ -19,9 +20,6 @@ const CreateSection = () => {
       </Grid>
       <Grid xs={6} md={6}>
         {<h3>Personajes creados</h3>}
-      </Grid>
-      <Grid xs={6} md={6}></Grid>
-      <Grid xs={6} md={6}>
         <List
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
         >

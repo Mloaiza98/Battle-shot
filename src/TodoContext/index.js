@@ -10,6 +10,7 @@ function TodoProvider({ children }) {
   //     loading,
   //   } = useLocalStorage("TODOS_V1", []);
   const [character, setCharacter] = useState([]);
+  
 
   const addNewCharacter = (name, pic) => {
     let newCharacter = [...character];
@@ -17,12 +18,18 @@ function TodoProvider({ children }) {
     newCharacter.push({ name, pic });
     setCharacter(newCharacter);
   };
+  const [openCharacter, setOpenCharacter] = useState(false);
+  const [pic, setPic] = React.useState(0);
 
   return (
     <TodoContext.Provider
       value={{
         character,
         addNewCharacter,
+        openCharacter,
+        setOpenCharacter,
+        setPic,
+        pic
       }}
     >
       {children}

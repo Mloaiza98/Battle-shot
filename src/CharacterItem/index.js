@@ -4,11 +4,12 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 
+
 export default function CharacterItem({ name, img }) {
   return (
     <ListItem alignItems="center">
       <ListItemAvatar>
-        <Avatar alt={name} src={`static/Imagen/${img}.jpeg`} />
+        <Avatar alt={name} src={`/assets/Imagen/${img}.png`} />
       </ListItemAvatar>
       <ListItemText primary={name} />
     </ListItem>

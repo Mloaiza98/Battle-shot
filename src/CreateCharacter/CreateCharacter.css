@@ -1,0 +1,11 @@
+div .Content {
+  display: flex;
+  justify-content: center;
+}
+
+::placeholder{
+    color: white;
+}
+input{
+    color: white;
+}
