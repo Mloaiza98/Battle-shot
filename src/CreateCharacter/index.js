@@ -49,7 +49,6 @@ export default function CreateCharacter() {
             color: "#FFC47E",
           }}
           id="Name"
-          variant="outlined"
           placeholder="Escribe un nombre"
           value={name}
           autoComplete="false"
@@ -57,10 +56,21 @@ export default function CreateCharacter() {
         />
       </CardContent>
       <CardActions className={"Content"}>
-        <Button variant="contained" onClick={onAdd}>
+        <Button
+          style={{
+            backgroundColor: "#664716",
+          }}
+          variant="contained"
+          onClick={onAdd}
+        >
           Agregar
         </Button>
-        <Button variant="contained" onClick={onCancel}>
+        <Button
+          style={{
+            color: "#664716",
+          }}
+          onClick={onCancel}
+        >
           Cancelar
         </Button>
       </CardActions>

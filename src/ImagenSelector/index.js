@@ -2,31 +2,69 @@ import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { TodoContext } from "../TodoContext";
+import { Button } from "@mui/material";
+import "./ImagenSelector.css";
 
 export default function ImagenSelector() {
   const { setOpenCharacter, setPic } = React.useContext(TodoContext);
-  const onClickImg = (event) => {
-    setOpenCharacter(false);
-    setPic(event.target.alt);
-    const indexPic = itemData.findIndex(
-      (pic) => pic.title === event.target.alt
-    );
-    console.log(indexPic);
-    itemData.splice(indexPic, 1);
+  const [selectedImage, setSelectedImage] = React.useState(null);
+
+  const onClickImg = (item) => {
+    setSelectedImage(item);
+    console.log(item);
   };
+
+  const onAddImg = () => {
+    if (selectedImage) {
+      setPic(selectedImage.title);
+
+      const indexPic = itemData.findIndex(
+        (pic) => pic.title === selectedImage.title
+      );
+      itemData.splice(indexPic, 1);
+
+      setOpenCharacter(false);
+    }
+  };
+
+  const onCancelImg = () => {
+    setOpenCharacter(false);
+  };
+
   return (
-    <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            src={item.img}
-            alt={item.title}
-            loading="lazy"
-            onClick={onClickImg}
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
+    <div>
+      <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+        {itemData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              src={item.img}
+              alt={item.title}
+              loading="lazy"
+              onClick={() => onClickImg(item)}
+              className={selectedImage === item ? "ImgSeleccionada" : ""}
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+      <Button
+        style={{
+          backgroundColor: "#DC852A",
+        }}
+        variant="contained"
+        onClick={onAddImg}
+      >
+        Agregar
+      </Button>
+      <Button
+        style={{
+          color: "#664716",
+        }}
+        variant="out-line"
+        onClick={onCancelImg}
+      >
+        Cancelar
+      </Button>
+    </div>
   );
 }
 
@@ -106,9 +144,5 @@ const itemData = [
   {
     img: "assets/Imagen/19.png",
     title: "19",
-  },
-  {
-    img: "assets/Imagen/20.png",
-    title: "20",
   },
 ];
