@@ -8,11 +8,12 @@ import "./create-section.css";
 import React from "react";
 
 const CreateSection = () => {
-  const { character } = React.useContext(TodoContext);
-  console.log(character);
-
+  const { character, setOpenGame } = React.useContext(TodoContext);
   // const [character, setCharacter] = React.useState([]);
   // setCharacter(defaultCharacter);
+  const onClickStart = () => {
+    setOpenGame(true);
+  };
   return (
     <Grid container spacing={2}>
       <Grid xs={6} md={6}>
@@ -34,6 +35,7 @@ const CreateSection = () => {
         alignItems="center"
       >
         <Button
+          onClick={onClickStart}
           style={{
             backgroundColor: "#664716",
           }}

@@ -1,5 +1,7 @@
 import { CreateSection } from "../CreateSection";
 import { Modal } from "../Modal";
+import { Game } from "../Game";
+import { GamePage } from "../GamePage";
 import ImagenSelector from "../ImagenSelector";
 import { TodoProvider, TodoContext } from "../TodoContext";
 import React from "react";
@@ -8,7 +10,7 @@ function App() {
   return (
     <TodoProvider>
       <TodoContext.Consumer>
-        {({ openCharacter }) => (
+        {({ openCharacter, openGame }) => (
           <>
             <div className="App">
               <header>
@@ -20,6 +22,11 @@ function App() {
               <Modal>
                 <ImagenSelector />
               </Modal>
+            )}
+            {openGame && (
+              <Game>
+                <GamePage />
+              </Game>
             )}
           </>
         )}

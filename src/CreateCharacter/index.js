@@ -38,7 +38,7 @@ export default function CreateCharacter() {
             display: "inline-flex",
           }}
           image={`/assets/Imagen/${pic}.png`}
-          title="green iguana"
+          title="Character"
           onClick={onImgClick}
         />
       </CardContent>
