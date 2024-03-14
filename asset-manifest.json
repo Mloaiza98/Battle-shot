@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Battle-shot/static/css/main.5316b5f0.css",
+    "main.js": "/Battle-shot/static/js/main.e868f0c8.js",
+    "static/js/453.e5760ca0.chunk.js": "/Battle-shot/static/js/453.e5760ca0.chunk.js",
+    "index.html": "/Battle-shot/index.html",
+    "main.5316b5f0.css.map": "/Battle-shot/static/css/main.5316b5f0.css.map",
+    "main.e868f0c8.js.map": "/Battle-shot/static/js/main.e868f0c8.js.map",
+    "453.e5760ca0.chunk.js.map": "/Battle-shot/static/js/453.e5760ca0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5316b5f0.css",
+    "static/js/main.e868f0c8.js"
+  ]
+}
