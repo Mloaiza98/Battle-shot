@@ -37,7 +37,7 @@ export default function CreateCharacter() {
             borderRadius: 50,
             display: "inline-flex",
           }}
-          image={`/assets/Imagen/${pic}.png`}
+          image={`https://mloaiza98.github.io/Battle-shot/assets/Imagen/${pic}.png`}
           title="Character"
           onClick={onImgClick}
         />
