@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import { TodoContext } from "../TodoContext";
 import { Button } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { GameWinner } from "../GameWinner";
+import "./GamePage.css";
 
 function GamePage() {
-  const { character, punishment } = React.useContext(TodoContext);
+  const { character, punishment, setOpenGame } = React.useContext(TodoContext);
 
   const data = character.map((data, index) => ({
     option: data.name.toString(),
-    image: { uri: `/assets/Imagen/${data.pic}.png` },
+    image: {
+      uri: `https://mloaiza98.github.io/Battle-shot/assets/Imagen/${data.pic}.png`,
+    },
   }));
   console.log(data);
   const [mustSpin, setMustSpin] = useState(false);
@@ -26,28 +32,47 @@ function GamePage() {
   };
 
   return (
-    <>
-      <Wheel
-        mustStartSpinning={mustSpin}
-        prizeNumber={prizeNumber}
-        backgroundColors={["#FFE382", "#FFAD84", "#C17110"]}
-        data={data}
-        onStopSpinning={() => {
-          setMustSpin(false);
-          setWinner(true);
-        }}
-      />
-      <Button
-        style={{
-          backgroundColor: "#664716",
-        }}
-        variant="contained"
-        onClick={handleSpinClick}
-      >
-        SPIN
-      </Button>
-      {winner && <p>{data[prizeNumber].option}    {newPunish}</p>}
-    </>
+    <div className="section">
+      <div className="game">
+        <Wheel
+          mustStartSpinning={mustSpin}
+          prizeNumber={prizeNumber}
+          backgroundColors={["#FFE382", "#FFAD84", "#C17110"]}
+          data={data}
+          onStopSpinning={() => {
+            setMustSpin(false);
+            setWinner(true);
+          }}
+        />
+        <Button
+          style={{
+            backgroundColor: "#664716",
+            justifyContent: "center",
+          }}
+          variant="contained"
+          onClick={handleSpinClick}
+        >
+          SPIN
+        </Button>
+        <IconButton
+          style={{
+            position: "fixed",
+            bottom: "5%",
+            right: "5%",
+            zIndex: 1,
+          }}
+          variant="contained"
+          onClick={() => {
+            setOpenGame(false);
+          }}
+        >
+          <AddCircleOutlineIcon fontSize="large" />
+        </IconButton>
+      </div>
+      {winner && (
+        <GameWinner data={data[prizeNumber].image.uri} punishment={newPunish} />
+      )}
+    </div>
   );
 }
 export { GamePage };
